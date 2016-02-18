@@ -1,0 +1,19 @@
+#! env ruby
+
+require "commander"
+
+require_relative "../lib/similarity"
+
+Commander.configure do
+  program :name, "Similarity"
+  program :version, "1.0.0"
+  program :description, "Compute similarity between arguments using api.cortical.io"
+
+  command :cosine do |c|
+    c.syntax = "similarity cosine <debate_apxd_file>"
+    c.description = "Compute the cosine similarity pairwise. The similarity will be written in-place"
+    c.action do |args, _|
+      Similarity::Similarity.cosine(args[0])
+    end
+  end
+end
